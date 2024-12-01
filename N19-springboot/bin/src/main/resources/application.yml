@@ -1,0 +1,22 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/smile
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        # dialect: org.hibernate.dialect.MySQL5Dialect
+    # use-new-id-generator-mappings: true
+
+# ENV
+env:
+  version: 1.xx
+  adminPassword: admin
+  staffPassword: staff

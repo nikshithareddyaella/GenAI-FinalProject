@@ -1,0 +1,178 @@
+<div class="register">
+  <div class="container w-50 p-3">
+    <div class="card my-3 shadow bg-body">
+      <h2 class="text-center my-2">Registration Form</h2>
+      <form (ngSubmit)="onSubmit()" #regisForm="ngForm" style="padding: 2rem">
+        <div class="flex">
+          <!-- First Name -->
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              required
+              [(ngModel)]="model.firstName"
+              name="firstName"
+              #firstName="ngModel"
+            />
+            <div
+              [hidden]="firstName.valid || firstName.pristine"
+              class="alert alert-danger"
+            >
+              firstName is required
+            </div>
+          </div>
+          <!-- Last Name -->
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              required
+              [(ngModel)]="model.lastName"
+              name="lastName"
+              #lastName="ngModel"
+            />
+            <div
+              [hidden]="lastName.valid || lastName.pristine"
+              class="alert alert-danger"
+            >
+              lastName is required
+            </div>
+          </div>
+        </div>
+        <br />
+        <!--Gender-->
+        <div class="form-group">
+          <label>Gender</label>
+          <p>&ensp;</p>
+          <label class="radio-inline">
+            <input
+              type="radio"
+              name="optradio"
+              value="Male"
+              [(ngModel)]="model.gender"
+            />
+            Male </label
+          >&nbsp;
+          <label class="radio-inline">
+            <input
+              type="radio"
+              name="optradio"
+              value="Female"
+              [(ngModel)]="model.gender"
+            />
+            Female
+          </label>
+        </div>
+        <br />
+
+        <!--Email-->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            [(ngModel)]="model.email"
+            name="email"
+            required
+            #email="ngModel"
+          />
+        </div>
+        <div
+          [hidden]="email.valid || email.pristine"
+          class="alert alert-danger"
+        >
+          Email is required
+        </div>
+        <br />
+        <!--date of birth-->
+        <div class="form-group">
+          <label for="dob">DOB</label>
+          <input
+            type="date"
+            class="form-control"
+            id="dob"
+            [(ngModel)]="model.dob"
+            name="dob"
+          />
+        </div>
+        <br />
+        <!-- Password  -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            [(ngModel)]="model.password"
+            name="password"
+            placeholder="Password"
+            class="form-control"
+            required
+            #password="ngModel"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          />
+          <div
+            *ngIf="
+              password.invalid && (regisForm.submitted || password.touched)
+            "
+            class="alert alert-danger"
+          >
+            <div *ngIf="!password.dirty">Password is required.</div>
+            <div *ngIf="!password.valid">
+              Must contain at least one number and one uppercase and lowercase
+              letter, and at least 8 or more characters.
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            [(ngModel)]="confirmPassword"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            class="form-control"
+            required
+            #confirmPass="ngModel"
+            pattern="{{ password.value }}"
+          />
+          <div
+            *ngIf="
+              confirmPass.invalid &&
+              (regisForm.submitted || confirmPass.touched)
+            "
+            class="alert alert-danger"
+          >
+            <div *ngIf="!confirmPass.dirty">Confirm password is required.</div>
+            <div *ngIf="!confirmPass.valid">
+              Password & Confirm Password does not match.
+            </div>
+          </div>
+        </div>
+        <br />
+        <button class="btn btn-primary" [disabled]="!regisForm.form.valid">
+          Submit
+        </button>
+        <button
+          type="button"
+          class="btn btn-warning mx-3"
+          (click)="resetFormModel(); regisForm.reset()"
+        >
+          Reset
+        </button>
+      </form>
+      <!-- Error  -->
+      <div *ngIf="error" class="alert alert-danger mt-3">
+        {{ error }}
+      </div>
+      <!-- Success -->
+      <div *ngIf="success" class="alert alert-success mt-3">
+        {{ success }}
+      </div>
+    </div>
+  </div>
+</div>

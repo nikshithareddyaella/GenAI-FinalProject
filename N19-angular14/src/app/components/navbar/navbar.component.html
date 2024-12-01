@@ -1,0 +1,24 @@
+<nav>
+  <ul class="navbar-custom">
+    <li style="margin-right: auto; color: azure; font-size: 2rem">
+      <a routerLink="/">N19</a>
+    </li>
+    <li><a routerLink="/dashboard">Dashboard</a></li>
+    <li><a routerLink="/summary">Summary</a></li>
+    <li><a routerLink="/reports">Reports</a></li>
+
+    <!-- Login/Register -->
+    <div class="d-flex gap-2" *ngIf="!loggedIn; else loggedInTemplate">
+      <li><a routerLink="/login">Login</a></li>
+      <li><a routerLink="/register">Register</a></li>
+    </div>
+
+    <!-- Logout -->
+    <ng-template #loggedInTemplate>
+      <div>
+        <li><a (click)="onLogout()">Logout</a></li>
+      </div>
+    </ng-template>
+  </ul>
+</nav>
+

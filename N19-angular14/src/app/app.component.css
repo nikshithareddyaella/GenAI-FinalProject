@@ -1,0 +1,13 @@
+.user-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin: 2rem;
+    margin-left: 25vw;
+    margin-right: 25vw;
+    padding: 2em;
+    background-color: #fff;
+    border-radius: 1em;
+}
