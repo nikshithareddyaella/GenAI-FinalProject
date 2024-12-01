@@ -3,7 +3,10 @@ package com.smile.rest1.controller;
 import com.smile.rest1.dao.UserRepo;
 import com.smile.rest1.model.User;
 import com.smile.rest1.security.JwtUtil;
+import com.sun.net.httpserver.Authenticator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,25 +32,22 @@ public class AuthController {
 
 
     @PostMapping("login")
-    public Map<String, String> login(@RequestBody Map<String, String> user) {
+    public ResponseEntity<?> login(@RequestBody Map<String, String> user) {
         List<User> users = userRepository.findByEmail(user.get("email"));
-        Map<String, String> response = new HashMap<>();
-
         if (users.isEmpty()) {
-            response.put("message", "User not found");
-            return response;
+            return ResponseEntity.status(401).body("Invalid credentials");
         }
 
         User student = users.get(0);
 
         if (passwordEncoder.matches(user.get("password"), student.getPassword())) {
             String token = jwtUtil.generateToken(student.getEmail());
-            response.put("message", "Login successful");
+            Map<String, String> response = new HashMap<>();
             response.put("token", token);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
-            response.put("message", "Invalid password");
+            return ResponseEntity.status(401).body("Invalid credentials");
         }
-        return response;
     }
 
     @PostMapping("register")

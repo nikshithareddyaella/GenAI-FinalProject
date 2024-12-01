@@ -21,11 +21,13 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.authService.login(this.model).subscribe(
-      () => {
+      (response) => {
+        console.log(response);
         console.log('Login successful');
         this.router.navigate(['/dashboard']);
       },
       (err) => {
+        console.log(err);
         this.errorMsg = err.error?.message || 'Invalid Credentials';
       }
     );
