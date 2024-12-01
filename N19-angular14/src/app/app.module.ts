@@ -10,6 +10,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SummaryComponent } from './components/summary/summary.component';
+import { ReportsComponent } from './components/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     RegisterComponent,
     LoginComponent,
+    SummaryComponent,
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,
