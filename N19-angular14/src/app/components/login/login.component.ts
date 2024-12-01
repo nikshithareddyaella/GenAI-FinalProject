@@ -32,4 +32,10 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
+  onClickOfRegister() {
+    this.router.navigate(['/register']);
+  }
 }
+
+

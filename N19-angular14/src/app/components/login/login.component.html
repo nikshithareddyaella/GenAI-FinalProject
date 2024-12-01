@@ -27,13 +27,20 @@
           />
         </div>
         <br />
-        <input
+        <div class="text-center mt-3">
+          <input
           class="btn btn-primary"
           type="submit"
           value="Submit"
           [disabled]="!loginForm.form.valid"
         />
+        </div>
       </form>
+      <!-- Redirect to Register -->
+      <div class="text-center mt-3">
+        <button class="btn btn-secondary" (click)="onClickOfRegister()">Register</button>
+      </div>
+
       <div *ngIf="errorMsg" class="alert alert-danger mt-4">{{ errorMsg }}</div>
     </div>
   </div>
