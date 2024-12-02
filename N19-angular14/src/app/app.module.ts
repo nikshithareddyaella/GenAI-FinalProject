@@ -29,7 +29,7 @@ import { ReportsComponent } from './components/reports/reports.component';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
