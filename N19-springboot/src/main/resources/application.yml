@@ -2,8 +2,6 @@ server:
   port: 8085
 
 spring:
-#  main:
-#    allow-bean-definition-overriding: true
   datasource:
     url: jdbc:mysql://localhost:3306/smile
     username: root
@@ -22,7 +20,6 @@ jwt:
 
 env:
   version: 1.xx
-
 
 
 #  adminPassword: admin

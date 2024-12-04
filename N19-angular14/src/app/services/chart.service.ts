@@ -11,11 +11,13 @@ export class ChartService {
   constructor(private http: HttpClient) {}
 
   getChartData(): Observable<any> {
-    console.log("Hi getChartData");
-    const httpOptions = {'Content-Type':  'application/json', headers: new HttpHeaders({'Access-Control-Allow-Origin': '*',
-      'Authorization': `Bearer ${localStorage.getItem('token')}`, // Add JWT token
-    })};
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('token')}`, // Send JWT token
+        'Content-Type': 'application/json',
+      }),
+    };
 
-    return this.http.get(this.apiUrl, httpOptions );
+    return this.http.get(this.apiUrl, httpOptions);
   }
 }

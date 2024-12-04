@@ -1,22 +1,19 @@
 package com.smile.rest1.controller;
 
 import com.smile.rest1.dao.UserRepo;
-import com.smile.rest1.model.User;
 import com.smile.rest1.security.JwtUtil;
-import com.sun.net.httpserver.Authenticator;
+import com.smile.rest1.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 @RestController
 @RequestMapping("/")
 public class AuthController {
@@ -28,8 +25,7 @@ public class AuthController {
     private UserRepo userRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder; // Inject PasswordEncoder
-
+    private PasswordEncoder passwordEncoder;
 
     @PostMapping("login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> user) {
@@ -60,7 +56,6 @@ public class AuthController {
             return response;
         }
 
-        // Hash password before saving
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
 

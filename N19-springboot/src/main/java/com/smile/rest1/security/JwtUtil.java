@@ -1,6 +1,6 @@
 package com.smile.rest1.security;
 
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
@@ -11,43 +11,38 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private final String SECRET_KEY = "Z2fFhklg9jKqH9zk8G1GekgkDzktmjS13FOnZcLshVxk=\n"; // Base64-encoded
+    private final String SECRET_KEY = "vs2mRgF7UBwq8GqUMzvv49vYL6xhuDSDuy5NHzF4zxs=";
 
     private Key getSigningKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY.replace("_", "/"));
+        byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    // Generate JWT Token
     public String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 180000)) // 3 minutes
-                .signWith(getSigningKey(), SignatureAlgorithm.HS256) // Use Key instead of String
+                .setExpiration(new Date(System.currentTimeMillis() + 180000)) // Token expiry (3 minutes in milliseconds)
+                .signWith(getSigningKey()) // Signing the token with the key
                 .compact();
     }
 
-    // Validate JWT Token
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder()
-                    .setSigningKey(getSigningKey()) // Use Key instead of String
+                    .setSigningKey(getSigningKey()) // Validating the signature using the signing key
                     .build()
-                    .parseClaimsJws(token);
+                    .parseClaimsJws(token); // Parse the claims to verify if the token is valid
             return true;
-        } catch (ExpiredJwtException e) {
-            System.out.println("Token expired");
-        } catch (JwtException e) {
-            System.out.println("Invalid token");
+        } catch (Exception e) {
+            System.out.println("Invalid or expired token");
         }
         return false;
     }
 
-    // Extract Username from Token
     public String extractUsername(String token) {
         return Jwts.parserBuilder()
-                .setSigningKey(getSigningKey()) // Use Key instead of String
+                .setSigningKey(getSigningKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody()
