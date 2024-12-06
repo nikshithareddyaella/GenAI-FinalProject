@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ChartService {
-  private apiUrl = 'http://localhost:8085/api/charts';
+  private apiUrl = 'http://localhost:3000/api/charts';
 
   constructor(private http: HttpClient) {}
 
