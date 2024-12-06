@@ -27,17 +27,30 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    // Hard-coded credentials for testing
+    private static final String TEST_USERNAME = "nikshithareddy";
+    private static final String TEST_PASSWORD = "nikshithareddy";
+
     @PostMapping("login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> user) {
+        // Hardcoded username and password for testing
+        if (TEST_USERNAME.equals(user.get("email")) && TEST_PASSWORD.equals(user.get("password"))) {
+            String token = jwtUtil.generateToken(TEST_USERNAME);
+            Map<String, String> response = new HashMap<>();
+            response.put("token", token);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+
+        // Check if user exists in the database
         List<User> users = userRepository.findByEmail(user.get("email"));
         if (users.isEmpty()) {
             return ResponseEntity.status(401).body("Invalid credentials");
         }
 
-        User student = users.get(0);
+        User userFromDb = users.get(0);
 
-        if (passwordEncoder.matches(user.get("password"), student.getPassword())) {
-            String token = jwtUtil.generateToken(student.getEmail());
+        if (passwordEncoder.matches(user.get("password"), userFromDb.getPassword())) {
+            String token = jwtUtil.generateToken(userFromDb.getEmail());
             Map<String, String> response = new HashMap<>();
             response.put("token", token);
             return new ResponseEntity<>(response, HttpStatus.OK);

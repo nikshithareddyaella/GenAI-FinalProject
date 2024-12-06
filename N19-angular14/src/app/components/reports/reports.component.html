@@ -1,10 +1,37 @@
 <div class="container">
-  <h2>Reports on Innovation Priorities</h2>
+  <!-- Page Title -->
+  <h4 class="text-center mb-4">Reports</h4>
+  <div class="row">
+    <!-- Radar Chart Card -->
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-header">Focus Areas</div>
+        <div class="card-body">
+          <canvas id="radarChart" aria-label="Radar chart showing focus areas" style="max-height: 300px;"></canvas>
+          <p>
+            <strong>Description:</strong> The radar chart illustrates the focus areas of different innovations and their
+            priority levels. Higher priority areas, such as <strong>Communication Assistance</strong> and
+            <strong>Knowledge Work</strong>, indicate a strategic emphasis on impactful fields like multimodal AI and
+            general-purpose LLMs. This chart helps to align resources with key focus areas.
+          </p>
+        </div>
+      </div>
+    </div>
 
-  <!-- Pie Chart Container -->
-  <article>
-    <h3>Investment Distribution</h3>
-    <canvas id="pieChart" width="450" height="450"></canvas> <!-- Canvas element here -->
-    <p>This pie chart illustrates the share of investments for each innovation. Data is dynamically loaded from the backend.</p>
-  </article>
+    <!-- Pie Chart Card -->
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-header">Investment Distribution</div>
+        <div class="card-body">
+          <canvas id="pieChart" aria-label="Pie chart showing investment distribution" style="max-height: 300px;"></canvas>
+          <p>
+            <strong>Description:</strong> The pie chart showcases the proportional distribution of investments
+            among various innovations. It emphasizes significant investment in <strong>General-Purpose LLMs</strong>,
+            accounting for the largest share, followed by <strong>Conversational AI</strong>. This distribution aligns
+            with the strategic objectives to enhance revenue, ethical compliance, and safety in AI systems.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

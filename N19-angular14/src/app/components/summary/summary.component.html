@@ -1,10 +1,36 @@
 <div class="container">
-  <h2>Summary of Innovations</h2>
+    <!-- Page Title -->
+    <h4 class="text-center mb-4">Summary</h4>
+  <div class="row">
+    <!-- Bar Chart Card -->
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-header">Investment by Innovation</div>
+        <div class="card-body">
+          <canvas id="barChart" aria-label="Bar chart showing investment by innovation" style="max-height: 300px;"></canvas>
+          <p>
+            <strong>Description:</strong> This bar chart displays the total investment in different innovations.
+            It highlights which areas are receiving the most financial support, helping stakeholders understand
+            funding priorities. From the data, we can observe that <strong>General-Purpose LLMs</strong> like Gemini 1.5
+            lead in investments, showing a high focus on efficiency and revenue gains.
+          </p>
+        </div>
+      </div>
+    </div>
 
-  <!-- Bar Chart Container -->
-  <article>
-    <h3>Investment by Innovation</h3>
-    <canvas id="barChart" width="800" height="400"></canvas> <!-- Canvas element here -->
-    <p>This bar chart displays the investments made in different innovations. Data is fetched dynamically from the backend.</p>
-  </article>
+    <!-- Line Chart Card -->
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-header">Investments Over Time (from last 5 months)</div>
+        <div class="card-body">
+          <canvas id="lineChart" aria-label="Line chart showing investments over time" style="max-height: 300px;"></canvas>
+          <p>
+            <strong>Description:</strong> This line chart shows the trend of investments over time for various innovations.
+            The chart enables stakeholders to identify changes in financial focus across years,
+            reflecting evolving priorities in the innovation landscape.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

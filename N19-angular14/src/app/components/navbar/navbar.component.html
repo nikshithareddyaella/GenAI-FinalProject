@@ -1,24 +1,21 @@
-<nav>
-  <ul class="navbar-custom">
-    <li style="margin-right: auto; color: azure; font-size: 2rem">
-      <a routerLink="/">N19</a>
+<nav class="navbar-custom sticky-top">
+  <ul class="navbar-list">
+    <li class="navbar-logo">
+      <a routerLink="/" class="navbar-logo-link">N19</a>
     </li>
 
-    <li *ngIf="loggedIn"><a routerLink="/dashboard">Dashboard</a></li>
-    <li *ngIf="loggedIn"><a routerLink="/summary">Summary</a></li>
-    <li *ngIf="loggedIn"><a routerLink="/reports">Reports</a></li>
+    <li *ngIf="loggedIn"><a routerLink="/dashboard" class="navbar-link">Dashboard</a></li>
+    <li *ngIf="loggedIn"><a routerLink="/summary" class="navbar-link">Summary</a></li>
+    <li *ngIf="loggedIn"><a routerLink="/reports" class="navbar-link">Reports</a></li>
 
-    <!-- Login/Register -->
     <div class="d-flex gap-2" *ngIf="!loggedIn; else loggedInTemplate">
-      <li><a routerLink="/login">Login</a></li>
+      <li><a routerLink="/login" class="navbar-link">Login</a></li>
     </div>
 
-    <!-- Logout -->
     <ng-template #loggedInTemplate>
       <div>
-        <li><a (click)="onLogout()">Logout</a></li>
+        <li><a (click)="onLogout()" class="navbar-link">Logout</a></li>
       </div>
     </ng-template>
   </ul>
 </nav>
-
