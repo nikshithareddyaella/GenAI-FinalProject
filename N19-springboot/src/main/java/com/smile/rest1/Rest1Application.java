@@ -14,6 +14,7 @@ public class Rest1Application {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**").allowedOrigins("http://localhost:80");
+				registry.addMapping("/**").allowedOrigins("https://genai-finalproject.onrender.com");
 			}
 		};
 	}

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:80")
+@CrossOrigin(origins = {"http://localhost:80", "https://genai-finalproject.onrender.com"})
 @RestController
 @RequestMapping("/api")
 public class ChartController {
