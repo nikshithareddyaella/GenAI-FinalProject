@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ChartService {
-  private apiUrl = 'http://localhost:3000/api/charts';
+  private apiUrl = 'https://genai-springboot.onrender.com/api/charts';
 
   constructor(private http: HttpClient) {}
 
